@@ -1,50 +1,46 @@
-Leave Management System (Laravel) – README
-📌 Project Overview
+# Leave Management System (LMS)
 
-The Leave Management System (LMS) is a web-based application built using Laravel and CodeIgniter frameworks.
-It allows employees to apply for leave, managers to approve or reject leave requests, and administrators to manage employees, leave types, and company policies.
+## Project Overview
+The Leave Management System (LMS) is a web-based application developed with Laravel and CodeIgniter frameworks. It automates employee leave management by allowing employees to apply for leave, managers to approve or reject requests, and administrators to manage leave policies and users. This system streamlines leave processes with a role-based workflow to enhance organizational efficiency.
 
-This system automates the manual leave process and provides a smoother, role-based workflow for organizations.
+## Features
 
-🚀 Features
-👨‍💼 Employee Module
+### Employee Module
+- User login & dashboard
+- Apply for leave
+- View leave history
+- Track leave application status
 
-Login & Dashboard
-Apply for Leave
-View Leave History
-Track Leave Application Status
+### Manager Module
+- Manager login & dashboard
+- View pending leave requests
+- Approve or reject leave applications
+- Filter leave requests by department
 
-👨‍🔧 Manager Module
+### Admin Module
+- Admin login & dashboard
+- Add, edit, delete employee records
+- Manage leave types
+- Define and update company leave policies
+- View all leave requests
 
-Manager Login & Dashboard
-View Pending Leave Requests
-Approve / Reject Leave Applications
-Department-wise Employee Leave Filtering
+## Technology Stack
 
-🛠 Admin Module
+### Backend
+- Laravel 10+
+- PHP 8.x
+- MySQL
 
-Admin Login & Dashboard
-Add / Edit / Delete Employees
-Manage Leave Types
-Define Company Leave Policies
-View All Leave Requests
+### Frontend
+- Blade Templates
+- HTML5, CSS3
+- Laravel Breeze (authentication)
+- TailwindCSS
 
-🏗️ Tech Stack
-Backend
+### Tools Used
+- Composer (PHP dependency manager)
+- phpMyAdmin (database management)
+- Git / GitHub (version control)
 
-Laravel 10+
-PHP 8.x
-MySQL
+<img width="816" height="415" alt="image" src="https://github.com/user-attachments/assets/9718f61d-468f-4ba5-82e1-e555000ed9b2" />
 
-Frontend
-
-Blade Templates
-HTML5, CSS3
-Laravel Breeze (for authentication)
-TailwindCSS
-
-Tools Used
-
-Composer
-phpMyAdmin
-Git / GitHub
