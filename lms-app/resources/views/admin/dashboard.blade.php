@@ -1,65 +1,78 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Admin Dashboard
+        <h2 class="font-semibold text-3xl text-gray-900 leading-tight">
+            🌈 Admin Dashboard
         </h2>
     </x-slot>
 
-    <div class="max-w-6xl mx-auto mt-8">
+    <div class="max-w-7xl mx-auto mt-10 space-y-10">
 
-        <!-- Stats Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            
-            <div class="bg-indigo-600 text-black p-6 rounded-lg shadow">
-                <h2 class="text-lg font-semibold">Total Employees</h2>
-                <p class="text-3xl font-bold">{{ $totalEmployees }}</p>
+        <!-- STAT CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Total Employees -->
+            <div class="p-6 rounded-2xl shadow-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-black transform hover:scale-105 transition duration-300">
+                <h2 class="text-black font-semibold opacity-90">Total Employees</h2>
+                <p class="text-4xl font-extrabold mt-2">{{ $totalEmployees }}</p>
             </div>
 
-            <div class="bg-purple-600 text-black p-6 rounded-lg shadow">
-                <h2 class="text-lg font-semibold">Total Managers</h2>
-                <p class="text-3xl font-bold">{{ $totalManagers }}</p>
+            <!-- Total Managers -->
+            <div class="p-6 rounded-2xl shadow-xl bg-gradient-to-r from-pink-500 to-rose-500 text-black transform hover:scale-105 transition duration-300">
+                <h2 class="text-black font-semibold opacity-90">Total Managers</h2>
+                <p class="text-4xl font-extrabold mt-2">{{ $totalManagers }}</p>
             </div>
 
-            <div class="bg-blue-600 text-black p-6 rounded-lg shadow">
-                <h2 class="text-lg font-semibold">Total Leave Requests</h2>
-                <p class="text-3xl font-bold">{{ $totalLeaves }}</p>
-            </div>
-        </div>
-
-        <!-- Leave Summary -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-
-            <div class="bg-yellow-500 text-black p-6 rounded-lg shadow">
-                <h2 class="text-lg font-semibold">Pending Leaves</h2>
-                <p class="text-3xl font-bold">{{ $pendingLeaves }}</p>
-            </div>
-
-            <div class="bg-green-500 text-black p-6 rounded-lg shadow">
-                <h2 class="text-lg font-semibold">Approved Leaves</h2>
-                <p class="text-3xl font-bold">{{ $approvedLeaves }}</p>
-            </div>
-
-            <div class="bg-red-500 text-black p-6 rounded-lg shadow">
-                <h2 class="text-lg font-semibold">Rejected Leaves</h2>
-                <p class="text-3xl font-bold">{{ $rejectedLeaves }}</p>
+            <!-- Total Leave Requests -->
+            <div class="p-6 rounded-2xl shadow-xl bg-gradient-to-r from-blue-500 to-cyan-500 text-black transform hover:scale-105 transition duration-300">
+                <h2 class="text-black font-semibold opacity-90">Total Leave Requests</h2>
+                <p class="text-4xl font-extrabold mt-2">{{ $totalLeaves }}</p>
             </div>
 
         </div>
 
-        <!-- Quick Links -->
-        <div class="bg-black p-6 rounded shadow">
-            <h3 class="text-xl font-bold mb-4">Quick Actions</h3>
 
-            <a href="{{ route('admin.users') }}"
-               class="bg-blue-600 text-black px-4 py-2 rounded hover:bg-blue-700 mr-4">
-               Manage Users
-            </a>
+        <!-- LEAVE STATUS SUMMARY -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            <a href="{{ route('manager.dashboard') }}"
-               class="bg-green-600 text-black px-4 py-2 rounded hover:bg-green-700">
-               View Leave Approvals
-            </a>
+            <div class="p-6 rounded-2xl shadow-xl bg-gradient-to-r from-yellow-400 to-amber-500 text-black transform hover:scale-105 transition duration-300">
+                <h2 class="text-black font-semibold opacity-90">Pending Leaves</h2>
+                <p class="text-4xl font-extrabold mt-2">{{ $pendingLeaves }}</p>
+            </div>
+
+            <div class="p-6 rounded-2xl shadow-xl bg-gradient-to-r from-green-500 to-emerald-500 text-black transform hover:scale-105 transition duration-300">
+                <h2 class="text-black font-semibold opacity-90">Approved Leaves</h2>
+                <p class="text-4xl font-extrabold mt-2">{{ $approvedLeaves }}</p>
+            </div>
+
+            <div class="p-6 rounded-2xl shadow-xl bg-gradient-to-r from-red-500 to-rose-600 text-black transform hover:scale-105 transition duration-300">
+                <h2 class="text-black font-semibold opacity-90">Rejected Leaves</h2>
+                <p class="text-4xl font-extrabold mt-2">{{ $rejectedLeaves }}</p>
+            </div>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+        <div class="p-8 bg-black shadow-2xl rounded-2xl border border-gray-200">
+
+            <h3 class="text-2xl font-bold mb-6 text-gray-800">⚡ Quick Actions</h3>
+
+            <div class="flex flex-wrap gap-4">
+
+                <a href="{{ route('admin.users') }}"
+                   class="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-black font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition">
+                    👥 Manage Users
+                </a>
+
+                <a href="{{ route('manager.dashboard') }}"
+                   class="px-6 py-3 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-black font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition">
+                    📄 View Leave Approvals
+                </a>
+
+            </div>
+
         </div>
 
     </div>
+
 </x-app-layout>

@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
     // ================= MANAGER =================
     Route::get('/manager/dashboard', function () {
-        if (auth()->user()->role !== 'manager') abort(403);
+        if (! in_array(auth()->user()->role, ['admin', 'manager'])) abort(403);
         return app(ManagerDashboardController::class)->index();
     })->name('manager.dashboard');
 

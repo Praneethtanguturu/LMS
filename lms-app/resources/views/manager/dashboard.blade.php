@@ -1,84 +1,95 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Manager Dashboard
+        <h2 class="font-semibold text-2xl text-gray-900 leading-tight">
+            🧑‍💼 Manager Dashboard
         </h2>
     </x-slot>
 
-    <div class="max-w-6xl mx-auto mt-8">
+    <div class="max-w-7xl mx-auto mt-10">
 
         @if(session('success'))
-            <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
+            <div class="bg-green-50 border border-green-300 text-green-800 px-4 py-3 rounded-lg mb-6 shadow-sm">
                 {{ session('success') }}
             </div>
         @endif
 
-        <div class="bg-white p-6 rounded shadow">
-            <h3 class="text-lg font-bold mb-4">All Leave Requests</h3>
+        <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+            <h3 class="text-xl font-bold mb-6 text-gray-800 flex items-center gap-2">
+                📄 All Leave Requests
+            </h3>
 
-            <table class="w-full border">
-                <thead>
-                    <tr class="bg-gray-200">
-                        <th class="p-3 border">Employee</th>
-                        <th class="p-3 border">Leave Type</th>
-                        <th class="p-3 border">From</th>
-                        <th class="p-3 border">To</th>
-                        <th class="p-3 border">Reason</th>
-                        <th class="p-3 border">Status</th>
-                        <th class="p-3 border">Action</th>
-                    </tr>
-                </thead>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 text-gray-700 uppercase text-xs tracking-wide border-b">
+                            <th class="p-4">Employee</th>
+                            <th class="p-4">Leave Type</th>
+                            <th class="p-4">From</th>
+                            <th class="p-4">To</th>
+                            <th class="p-4">Reason</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4">Action</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    @foreach($leaves as $leave)
-                    <tr>
-                        <td class="p-3 border">{{ $leave->user->name }}</td>
-                        <td class="p-3 border">{{ $leave->leave_type }}</td>
-                        <td class="p-3 border">{{ $leave->from_date }}</td>
-                        <td class="p-3 border">{{ $leave->to_date }}</td>
-                        <td class="p-3 border">{{ $leave->reason }}</td>
-                        <td class="p-3 border capitalize">
+                    <tbody>
+                        @foreach($leaves as $leave)
+                        <tr class="border-b hover:bg-gray-50 transition">
+                            <td class="p-4 font-semibold text-gray-800">{{ $leave->user->name }}</td>
+                            <td class="p-4">{{ $leave->leave_type }}</td>
+                            <td class="p-4">{{ $leave->from_date }}</td>
+                            <td class="p-4">{{ $leave->to_date }}</td>
+                            <td class="p-4 text-gray-600">{{ $leave->reason }}</td>
 
-                            @if($leave->status == 'pending')
-                                <span class="text-yellow-600 font-bold">Pending</span>
-                            @elseif($leave->status == 'approved')
-                                <span class="text-green-600 font-bold">Approved</span>
-                            @else
-                                <span class="text-red-600 font-bold">Rejected</span>
-                            @endif
+                            <td class="p-4">
+                                @if($leave->status == 'pending')
+                                    <span class="px-3 py-1 rounded-full text-yellow-700 bg-yellow-100 font-semibold">
+                                        Pending
+                                    </span>
+                                @elseif($leave->status == 'approved')
+                                    <span class="px-3 py-1 rounded-full text-green-700 bg-green-100 font-semibold">
+                                        Approved
+                                    </span>
+                                @else
+                                    <span class="px-3 py-1 rounded-full text-red-700 bg-red-100 font-semibold">
+                                        Rejected
+                                    </span>
+                                @endif
+                            </td>
 
-                        </td>
+                            <td class="p-4">
+                                @if($leave->status == 'pending')
+                                    <div class="flex gap-3">
 
-                        <td class="p-3 border">
+                                        <!-- Approve Button -->
+                                        <form action="{{ route('leave.approve', $leave->id) }}" method="POST">
+                                            @csrf
+                                            <button 
+                                                class="bg-green-600 text-black px-4 py-1.5 rounded-md shadow hover:bg-green-700 transition">
+                                                Approve
+                                            </button>
+                                        </form>
 
-                            @if($leave->status == 'pending')
+                                        <!-- Reject Button -->
+                                        <form action="{{ route('leave.reject', $leave->id) }}" method="POST">
+                                            @csrf
+                                            <button 
+                                                class="bg-red-600 text-white px-4 py-1.5 rounded-md shadow hover:bg-red-700 transition">
+                                                Reject
+                                            </button>
+                                        </form>
 
-                                <!-- Approve -->
-                                <form action="{{ route('leave.approve', $leave->id) }}" method="POST" class="inline-block">
-                                    @csrf
-                                    <button class="bg-green-600 text-black px-3 py-1 rounded hover:bg-green-700">
-                                        Approve
-                                    </button>
-                                </form>
+                                    </div>
+                                @else
+                                    <span class="text-gray-500 italic">No Action</span>
+                                @endif
+                            </td>
 
-                                <!-- Reject -->
-                                <form action="{{ route('leave.reject', $leave->id) }}" method="POST" class="inline-block ml-2">
-                                    @csrf
-                                    <button class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">
-                                        Reject
-                                    </button>
-                                </form>
-
-                            @else
-                                <span class="text-gray-500">No Action</span>
-                            @endif
-
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-
-            </table>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
